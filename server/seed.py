@@ -5,11 +5,7 @@ from models import db, Order, User, Client
 
 with app.app_context():
 
-    print('Creating User...')
-
-    u1 = User(f_name='Julianne', l_name='Ilaria-Parks')
-
-    users = [u1]
+    #  
 
     print('Creating Client...')
 
@@ -24,7 +20,7 @@ with app.app_context():
 
     orders = [o1]
     db.session.add_all(orders)
-    db.session.add_all(users)
+    # db.session.add_all(users)
     db.session.add_all(clients)
     db.session.commit()
 
