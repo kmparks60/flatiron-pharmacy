@@ -13,18 +13,16 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import OrderList from './OrderList'
+import ClientList from './ClientList';
 
 
+function Clients() {
 
-
-function Orders() {
-
-    function dashRoute() {
+	function dashRoute() {
         window.location.href='/dashboard'
     }
 
-    return (
+  	return (
         <>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
@@ -34,13 +32,13 @@ function Orders() {
                             component="h1"
                             variant="h6"
                             color="white">
-                            Orders
+                            Clients
                         </Typography>
                         <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
                 			<DashboardIcon />
               			</Badge>
-            		</IconButton>
+            		    </IconButton>
                     </Toolbar>
                 </AppBar>
                     <Toolbar
@@ -72,15 +70,15 @@ function Orders() {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <OrderList />
+                                    <ClientList />
                                 </Paper>
                             </Grid>
                         </Grid>
                     </Container>
                 </Box>
             </Box>
-        </>
-    )
+    	</>	
+  	)
 }
 
-export default Orders
+export default Clients

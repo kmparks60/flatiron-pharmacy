@@ -1,14 +1,13 @@
 import React from 'react'
-// import ClientSearch from './ClientSearch'
-import Link from '@mui/material/Link';
+import ClientSearch from './ClientSearch'
 
 function Client() {
-  return (
-    <div>
-      <h1>Client</h1>
-      <Link href="/clientsearch" variant="body2">Client Search</Link>
-    </div>
-  )
+    return (
+        <>
+            client
+            <ClientSearch />
+        </>
+    )
 }
 
 export default Client

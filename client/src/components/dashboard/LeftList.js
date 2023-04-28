@@ -5,28 +5,52 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import MedicationIcon from '@mui/icons-material/Medication';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function LeftList() {
+
+    function chemicalRoute() {
+        window.location.href='/dashboard/chemicals'
+    }
+
+    function clientRoute() {
+        window.location.href='/dashboard/clients'
+    }
+
+    function orderRoute() {
+        window.location.href='/dashboard/orders'
+    }
+
+    function logOut() {
+        window.location.href='/login'
+    }
+
     return (
         <Box pt={8} height={'100px'}>
-            <ListItemButton>
+            <ListItemButton onClick={chemicalRoute}>
             <ListItemIcon>
-                <ShoppingCartIcon />
+                <MedicationIcon />
             </ListItemIcon>
-            <ListItemText primary="Orders" />
+            <ListItemText primary="Chemicals" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={clientRoute}>
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Clients" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={orderRoute}>
             <ListItemIcon>
-                <BarChartIcon />
+                <ShoppingCartIcon />
             </ListItemIcon>
-            <ListItemText primary="Reports" />
+            <ListItemText primary="Orders" />
+            </ListItemButton>
+            <ListItemButton onClick={logOut}>
+            <ListItemIcon>
+                <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="LogOut" />
             </ListItemButton>
         </Box>
     )    

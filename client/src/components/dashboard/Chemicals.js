@@ -13,12 +13,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import OrderList from './OrderList'
+import ChemicalList from './ChemicalList';
 
-
-
-
-function Orders() {
+function Chemicals() {
 
     function dashRoute() {
         window.location.href='/dashboard'
@@ -34,7 +31,7 @@ function Orders() {
                             component="h1"
                             variant="h6"
                             color="white">
-                            Orders
+                            Chemicals
                         </Typography>
                         <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
@@ -72,7 +69,7 @@ function Orders() {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <OrderList />
+                                    <ChemicalList />
                                 </Paper>
                             </Grid>
                         </Grid>
@@ -83,4 +80,4 @@ function Orders() {
     )
 }
 
-export default Orders
+export default Chemicals

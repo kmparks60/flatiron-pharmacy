@@ -9,23 +9,21 @@ import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
 
-function OrderList() {
-	
-	
-	return (
-		<>
-			<Typography component="h2" variant="h6" color="primary" gutterBottom>
-      		Recent Orders
+
+function ChemicalList() {
+
+    return (
+        <>
+            <Typography component="h2" variant="h6" color="primary" gutterBottom>
+      		Chemicals
     		</Typography>
-			{/* <h1>Recent Orders</h1> */}
       		<Table size="small">
         		<TableHead>
           			<TableRow>
-            			<TableCell>Date</TableCell>
             			<TableCell>Name</TableCell>
-            			<TableCell>Ship To</TableCell>
-            			<TableCell>Payment Method</TableCell>
-            			<TableCell align="right">Sale Amount</TableCell>
+            			<TableCell>Dosage</TableCell>
+            			<TableCell>Price</TableCell>
+            			<TableCell align="right">Quantity</TableCell>
           			</TableRow>
         		</TableHead>
         		<TableBody>
@@ -33,9 +31,8 @@ function OrderList() {
               			<TableCell></TableCell>
               			<TableCell></TableCell>
               			<TableCell></TableCell>
-              			<TableCell></TableCell>
               			<TableCell align="right"></TableCell>
-						<IconButton>
+                          <IconButton>
 							<EditIcon />
 						</IconButton>
 						<IconButton>
@@ -43,9 +40,9 @@ function OrderList() {
 						</IconButton>
             		</TableRow>
         		</TableBody>
-      		</Table>	
-		</>
-  )
+      		</Table>
+        </>
+    )
 }
 
-export default OrderList
+export default ChemicalList

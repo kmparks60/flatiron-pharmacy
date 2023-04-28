@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import LeftList from './LeftList';
 import OrderChart from './OrderChart'
-import Orders from './Orders'
+import Projected from './Projected'
 import OrderList from './OrderList'
 
 function Dashboard() {
@@ -77,7 +77,7 @@ function Dashboard() {
                                         flexDirection: 'column',
                                         height: 240,
                                     }}>
-                                    <Orders />
+                                    <Projected />
                                 </Paper>
                             </Grid>
                             {/* Recent Orders */}
