@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import {useState, useEffect} from 'react';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -15,8 +16,18 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import ChemicalList from './ChemicalList';
 
+// export const ChemContext = createContext();
+
 function Chemicals() {
 
+    const [apis, setApis] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:5555/apis')
+        .then(r => r.json())
+        .then(setApis)
+    }, [])
+    
     function dashRoute() {
         window.location.href='/dashboard'
     }
@@ -31,7 +42,7 @@ function Chemicals() {
                             component="h1"
                             variant="h6"
                             color="white">
-                            Chemicals
+                            APIs
                         </Typography>
                         <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
@@ -59,17 +70,19 @@ function Chemicals() {
                         theme.palette.mode === 'light'
                             ? theme.palette.grey[100]
                             : theme.palette.grey[900],
-                        flexGrow: 1,
-                        height: '100vh',
-                        overflow: 'auto',
-                    }}>
+                            flexGrow: 1,
+                            height: '100vh',
+                            overflow: 'auto',
+                        }}>
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}>
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <ChemicalList />
+                                    {/* <ChemContext.Provider value={apis}> */}
+                                        <ChemicalList apis={apis}/>
+                                    {/* </ChemContext.Provider> */}
                                 </Paper>
                             </Grid>
                         </Grid>

@@ -10,6 +10,7 @@ from datetime import timedelta
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key=b'Flatiron'
 app.json.compact = False
 app.permanent_session_lifetime = timedelta(days=30)
 metadata = MetaData(naming_convention={

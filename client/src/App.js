@@ -1,4 +1,5 @@
-// import React, {useState, useEffect} from 'react'
+import React from 'react'
+import {useState, useEffect} from 'react'
 import Home from './components/Home'
 import Login from './components/auth/Login'
 import SignUp from './components/auth/SignUp'
@@ -11,13 +12,32 @@ import {Routes, Route} from 'react-router-dom'
 
 
 function App() {
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    fetch('/checksession').then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user))
+      }
+    })
+  }, [])
+
+  function handleLogin(user) {
+    setUser(user);
+  }
+
+  function handleLogout() {
+    setUser(null);
+  }
+
   return (
     <>
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/login' element={<Login />}/>
+        <Route path='/login' element={<Login handleLogin={handleLogin}/>}/>
         <Route path='/signup' element={<SignUp />}/>
-        <Route path='/dashboard' element={<Dashboard />}/>
+        <Route path='/dashboard' element={<Dashboard user ={user} setUser={setUser} onLogout={handleLogout}/>}/>
         <Route path='/client' element={<Client />}/>
         <Route path='dashboard/clients' element={<Clients />}/>
         <Route path='dashboard/orders' element={<Orders />}/>

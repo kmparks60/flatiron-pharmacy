@@ -10,6 +10,7 @@ class Order(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Float)
+    pay_method = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     client_id = db.Column(db.Integer, db.ForeignKey('clients.id'))
     order_date = db.Column(db.DateTime, server_default = db.func.now())
@@ -54,10 +55,21 @@ class Client(db.Model, SerializerMixin):
     serialize_rules = ('-orders',)
 
     id = db.Column(db.Integer, primary_key=True)
-    f_name = db.Column(db.String, nullable=False)
-    l_name = db.Column(db.String, nullable=False)
+    company = db.Column(db.String, nullable=False)
+    address = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
+    zipcode = db.Column(db.String, nullable=False)
+    country = db.Column(db.String, nullable=False)
 
     orders = db.relationship('Order', backref='client')
     users = association_proxy('orders', 'user')
+
+class API(db.Model, SerializerMixin):
+    __tablename__ = 'apis00'
+
+    id = db.Column(db.Integer, primary_key=True)
+    chemical = db.Column(db.String, nullable=False)
+    quantity = db.Column(db.String)
+    price = db.Column(db.Float)
+    

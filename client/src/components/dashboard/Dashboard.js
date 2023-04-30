@@ -12,9 +12,25 @@ import Paper from '@mui/material/Paper';
 import LeftList from './LeftList';
 import OrderChart from './OrderChart'
 import Projected from './Projected'
-import OrderList from './OrderList'
+import ClientForm from './ClientForm'
+import LogoutIcon from '@mui/icons-material/Logout';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import {useNavigate} from 'react-router-dom'
 
-function Dashboard() {
+
+function Dashboard({user, setUser, onLogout}) {
+    const navigate=useNavigate()
+
+    console.log(user)
+    
+    function handleLogout() {
+        fetch("/logout", {
+            method: "DELETE",
+        }).then(
+            setUser(null),
+        navigate('/login')
+    )};
 
     return (
         <>
@@ -26,8 +42,16 @@ function Dashboard() {
                             component="h1"
                             variant="h6"
                             color="white">
-                            Dashboard
+                            Welcome, {user?.f_name}
                         </Typography>
+                        <IconButton color="inherit" onClick={handleLogout} sx={{ marginLeft: "auto" }}>
+              			<Badge color="secondary" align='right'>
+                			<Typography fontSize='6'>
+                                Logout
+                            </Typography >
+                            <LogoutIcon />
+              			</Badge>
+            		    </IconButton>
                     </Toolbar>
                 </AppBar>
                     <Toolbar
@@ -83,7 +107,7 @@ function Dashboard() {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <OrderList />
+                                    <ClientForm />
                                 </Paper>
                             </Grid>
                         </Grid>

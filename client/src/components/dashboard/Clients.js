@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState, useEffect} from 'react';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -17,6 +18,14 @@ import ClientList from './ClientList';
 
 
 function Clients() {
+
+    const [clients, setClients] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:5555/clients')
+        .then(r => r.json())
+        .then(setClients)
+    },[])
 
 	function dashRoute() {
         window.location.href='/dashboard'
@@ -56,10 +65,6 @@ function Clients() {
                 <Box
                     component="main"
                     sx={{
-                        backgroundColor: (theme) =>
-                        theme.palette.mode === 'light'
-                            ? theme.palette.grey[100]
-                            : theme.palette.grey[900],
                         flexGrow: 1,
                         height: '100vh',
                         overflow: 'auto',
@@ -70,7 +75,7 @@ function Clients() {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <ClientList />
+                                    <ClientList clients={clients}/>
                                 </Paper>
                             </Grid>
                         </Grid>

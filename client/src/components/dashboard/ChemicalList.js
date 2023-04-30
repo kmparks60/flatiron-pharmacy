@@ -1,44 +1,37 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
+import {ChemContext} from './Chemicals'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
-import ClearIcon from '@mui/icons-material/Clear';
-import IconButton from '@mui/material/IconButton';
+import ChemicalTable from './ChemicalTable';
 
+function ChemicalList({apis}) {
 
-function ChemicalList() {
-
-    return (
+	// const {apis} = useContext(ChemContext)
+    
+	return (
         <>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
-      		Chemicals
+      		APIs
     		</Typography>
       		<Table size="small">
         		<TableHead>
           			<TableRow>
-            			<TableCell>Name</TableCell>
-            			<TableCell>Dosage</TableCell>
-            			<TableCell>Price</TableCell>
-            			<TableCell align="right">Quantity</TableCell>
+					  	<TableCell>Name</TableCell>
+            			<TableCell>Stock Number</TableCell>
+            			<TableCell>Quantity</TableCell>
+            			<TableCell align='right'>Price</TableCell>
           			</TableRow>
         		</TableHead>
         		<TableBody>
-            		<TableRow >
-              			<TableCell></TableCell>
-              			<TableCell></TableCell>
-              			<TableCell></TableCell>
-              			<TableCell align="right"></TableCell>
-                          <IconButton>
-							<EditIcon />
-						</IconButton>
-						<IconButton>
-							<ClearIcon />
-						</IconButton>
-            		</TableRow>
+				{/* <ChemContext.Consumer> */}
+				{apis.map((apiObj) => {
+						return <ChemicalTable key={apiObj.id} api={apiObj} />
+					}) }
+				{/* </ChemContext.Consumer> */}
         		</TableBody>
       		</Table>
         </>

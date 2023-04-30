@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState, useEffect} from 'react';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -19,10 +20,18 @@ import OrderList from './OrderList'
 
 
 function Orders() {
-
+    
     function dashRoute() {
         window.location.href='/dashboard'
     }
+
+    const [orders, setOrders] = useState([])
+
+    useEffect(() => {
+        fetch('/orders')
+        .then(r=>r.json())
+        .then(setOrders)
+    }, [])
 
     return (
         <>
@@ -72,7 +81,7 @@ function Orders() {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <OrderList />
+                                    <OrderList orders={orders}/>
                                 </Paper>
                             </Grid>
                         </Grid>

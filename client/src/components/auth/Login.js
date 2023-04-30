@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,8 +10,32 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import {useNavigate} from 'react-router-dom'
 
-function Login() {
+
+function Login({handleLogin}) {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate()
+
+  function onSubmit(e) {
+    e.preventDefault();
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    // body: JSON.stringify({ username}),
+        body: JSON.stringify({ email, password }),
+    }).then((r) => {
+        if (r.ok) {
+            r.json().then((user) => handleLogin(user))
+            navigate('/dashboard')
+        }
+    });
+  }
   return (
     <>  
       <Container component="main" maxWidth="xs">
@@ -29,7 +54,7 @@ function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={onSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -38,6 +63,7 @@ function Login() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
             <TextField
@@ -49,6 +75,7 @@ function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"

@@ -6,7 +6,6 @@ import ListItemText from '@mui/material/ListItemText';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import MedicationIcon from '@mui/icons-material/Medication';
-import LogoutIcon from '@mui/icons-material/Logout';
 
 function LeftList() {
 
@@ -20,10 +19,6 @@ function LeftList() {
 
     function orderRoute() {
         window.location.href='/dashboard/orders'
-    }
-
-    function logOut() {
-        window.location.href='/login'
     }
 
     return (
@@ -45,12 +40,6 @@ function LeftList() {
                 <ShoppingCartIcon />
             </ListItemIcon>
             <ListItemText primary="Orders" />
-            </ListItemButton>
-            <ListItemButton onClick={logOut}>
-            <ListItemIcon>
-                <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText primary="LogOut" />
             </ListItemButton>
         </Box>
     )    

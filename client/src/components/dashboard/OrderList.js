@@ -5,11 +5,10 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
-import ClearIcon from '@mui/icons-material/Clear';
-import IconButton from '@mui/material/IconButton';
+import OrderTable from './OrderTable';
 
-function OrderList() {
+
+function OrderList({orders}) {
 	
 	
 	return (
@@ -17,31 +16,20 @@ function OrderList() {
 			<Typography component="h2" variant="h6" color="primary" gutterBottom>
       		Recent Orders
     		</Typography>
-			{/* <h1>Recent Orders</h1> */}
       		<Table size="small">
         		<TableHead>
           			<TableRow>
-            			<TableCell>Date</TableCell>
-            			<TableCell>Name</TableCell>
-            			<TableCell>Ship To</TableCell>
+            			<TableCell>Order Number</TableCell>
+            			<TableCell>Customer Id</TableCell>
+            			<TableCell>Order Date</TableCell>
             			<TableCell>Payment Method</TableCell>
-            			<TableCell align="right">Sale Amount</TableCell>
+            			<TableCell align="right">Total</TableCell>
           			</TableRow>
         		</TableHead>
         		<TableBody>
-            		<TableRow >
-              			<TableCell></TableCell>
-              			<TableCell></TableCell>
-              			<TableCell></TableCell>
-              			<TableCell></TableCell>
-              			<TableCell align="right"></TableCell>
-						<IconButton>
-							<EditIcon />
-						</IconButton>
-						<IconButton>
-							<ClearIcon />
-						</IconButton>
-            		</TableRow>
+					{orders.map(orderObj => {
+							return <OrderTable key={orderObj.id} order={orderObj} />
+						}) }
         		</TableBody>
       		</Table>	
 		</>
