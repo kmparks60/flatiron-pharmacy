@@ -7,15 +7,15 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import ClientTable from './ClientTable';
 
-function ClientList({clients}) {
+function ClientList({clients, removeClientFromState}) {
 
   	return (
     	<>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
       		Clients
     		</Typography>
-			<Table size="medium" >
-				<TableHead align='center'>
+			<Table size="small" >
+				<TableHead>
 					<TableRow>
 						<TableCell>Company</TableCell>
 						<TableCell>Address</TableCell>
@@ -26,9 +26,9 @@ function ClientList({clients}) {
 						<TableCell align='right'>Client Id</TableCell>
 					</TableRow>
 				</TableHead>
-				<TableBody align='center'>
-					{clients.map(clientObj => {
-						return <ClientTable key={clientObj.id} client={clientObj} />
+				<TableBody>
+				{clients.map(clientObj => {
+						return <ClientTable key={clientObj.id} client={clientObj} removeClientFromState={removeClientFromState} />
 					}) }
 				</TableBody>
 			</Table>

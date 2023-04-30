@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -19,10 +20,22 @@ import Badge from '@mui/material/Badge';
 import {useNavigate} from 'react-router-dom'
 
 
-function Dashboard({user, setUser, onLogout}) {
-    const navigate=useNavigate()
+function Dashboard({user, setUser}) {
 
-    console.log(user)
+    const [clients, setClients] = useState([])
+
+    const addClient = (cO) => {
+        const clientArr = [...clients, cO]
+        fetch('http://localhost:5555/clients', {
+            method: 'POST', 
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(cO)
+        })
+        .then(r => r.json())
+        setClients(clientArr)
+    }
+
+    const navigate=useNavigate()
     
     function handleLogout() {
         fetch("/logout", {
@@ -107,7 +120,7 @@ function Dashboard({user, setUser, onLogout}) {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <ClientForm />
+                                    <ClientForm addClient={addClient}/>
                                 </Paper>
                             </Grid>
                         </Grid>

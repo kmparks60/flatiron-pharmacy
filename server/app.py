@@ -147,6 +147,19 @@ class Clients(Resource):
             }
             c_list.append(c_dict)
         return make_response(c_list, 200)
+
+    def post(self):
+        data = request.get_json()
+        client = Client(company = data['company'],
+                        address = data['address'],
+                        city = data['city'],
+                        state = data['state'],
+                        zipcode = data['zipcode'],
+                        country = data['country']
+                        )
+        db.session.add(client)
+        db.session.commit()
+        return make_response(client.to_dict(), 201)
     
 api.add_resource(Clients, '/clients')
 
@@ -156,6 +169,25 @@ class GetClientsById(Resource):
         if c_instace == None:
             return make_response({'Error': 'Client Not Found'}, 404)
         return make_response(c_instace.to_dict(), 200)
+    
+    def patch(self, id):
+        c = Client.query.filter_by(id=id).first()
+        if c == None:
+            return make_response({'error': 'Client not found'}, 404)
+        data = request.get_json()
+        for key in data.keys():
+            setattr(c, key, data[key])
+        db.session.add(c)
+        db.session.commit()
+        return make_response(c.to_dict(), 200)
+    
+    def delete(self, id):
+        c_instance = Client.query.filter_by(id=id).first()
+        if c_instance == None:
+            return make_response({'Error': 'Client not found'}, 404)
+        db.session.delete(c_instance)
+        db.session.commit()
+        return make_response({}, 204)
 
 api.add_resource(GetClientsById, '/clients/<int:id>')
 

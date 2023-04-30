@@ -15,12 +15,12 @@ function OrderTable({order}) {
 			<TableCell>{order.pay_method}</TableCell>
 			<TableCell align='right'>{order.price}</TableCell>
             <TableCell>
-			<IconButton>
-			<EditIcon />
-			</IconButton>
-			<IconButton>
-			<ClearIcon />
-			</IconButton>
+				<IconButton>
+					<EditIcon />
+				</IconButton>
+				<IconButton>
+					<ClearIcon />
+				</IconButton>
 			</TableCell>
       </TableRow>
     </>

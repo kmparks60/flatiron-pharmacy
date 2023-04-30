@@ -27,17 +27,13 @@ function App() {
     setUser(user);
   }
 
-  function handleLogout() {
-    setUser(null);
-  }
-
   return (
     <>
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/login' element={<Login handleLogin={handleLogin}/>}/>
         <Route path='/signup' element={<SignUp />}/>
-        <Route path='/dashboard' element={<Dashboard user ={user} setUser={setUser} onLogout={handleLogout}/>}/>
+        <Route path='/dashboard' element={<Dashboard user ={user} setUser={setUser} />}/>
         <Route path='/client' element={<Client />}/>
         <Route path='dashboard/clients' element={<Clients />}/>
         <Route path='dashboard/orders' element={<Orders />}/>

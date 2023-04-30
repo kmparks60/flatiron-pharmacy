@@ -26,7 +26,7 @@ function OrderList({orders}) {
             			<TableCell align="right">Total</TableCell>
           			</TableRow>
         		</TableHead>
-        		<TableBody>
+        		<TableBody align='center'>
 					{orders.map(orderObj => {
 							return <OrderTable key={orderObj.id} order={orderObj} />
 						}) }

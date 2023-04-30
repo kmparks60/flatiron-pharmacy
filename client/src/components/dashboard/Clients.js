@@ -21,6 +21,15 @@ function Clients() {
 
     const [clients, setClients] = useState([])
 
+    const removeClientFromState = (removeClientId) => {
+        const clientArr = clients.filter(clientObject => {
+            if(clientObject.id !== removeClientId) {
+                return true
+            }
+        })
+        setClients(clientArr)
+    }
+
     useEffect(() => {
         fetch('http://localhost:5555/clients')
         .then(r => r.json())
@@ -65,6 +74,10 @@ function Clients() {
                 <Box
                     component="main"
                     sx={{
+                        backgroundColor: (theme) =>
+                        theme.palette.mode === 'light'
+                            ? theme.palette.grey[100]
+                            : theme.palette.grey[900],
                         flexGrow: 1,
                         height: '100vh',
                         overflow: 'auto',
@@ -75,7 +88,7 @@ function Clients() {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <ClientList clients={clients}/>
+                                    <ClientList clients={clients} removeClientFromState={removeClientFromState}/>
                                 </Paper>
                             </Grid>
                         </Grid>
