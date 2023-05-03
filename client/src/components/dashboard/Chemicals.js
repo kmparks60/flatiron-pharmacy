@@ -1,5 +1,5 @@
-import React from 'react';
-import {useState, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
+import { ApiContext } from '../context/api';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -16,11 +16,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import ChemicalList from './ChemicalList';
 
-// export const ChemContext = createContext();
-
 function Chemicals() {
-
-    const [apis, setApis] = useState([])
+    const {apis, setApis} = useContext(ApiContext)
 
     useEffect(() => {
         fetch('http://localhost:5555/apis')
@@ -80,9 +77,7 @@ function Chemicals() {
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    {/* <ChemContext.Provider value={apis}> */}
                                         <ChemicalList apis={apis}/>
-                                    {/* </ChemContext.Provider> */}
                                 </Paper>
                             </Grid>
                         </Grid>

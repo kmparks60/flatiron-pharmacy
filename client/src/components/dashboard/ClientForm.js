@@ -35,6 +35,7 @@ function ClientForm({addClient}) {
         }
         addClient(newClient)
     }
+    
 
     return (
         <>

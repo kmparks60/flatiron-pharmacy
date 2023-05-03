@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import Home from './components/Home'
+// import Home from './components/Home'
 import Login from './components/auth/Login'
 import SignUp from './components/auth/SignUp'
 import Dashboard from './components/dashboard/Dashboard'
@@ -30,8 +30,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/login' element={<Login handleLogin={handleLogin}/>}/>
+        {/* <Route path='/' element={<Home />}/> */}
+        <Route path='/' element={<Login handleLogin={handleLogin}/>}/>
         <Route path='/signup' element={<SignUp />}/>
         <Route path='/dashboard' element={<Dashboard user ={user} setUser={setUser} />}/>
         <Route path='/client' element={<Client />}/>

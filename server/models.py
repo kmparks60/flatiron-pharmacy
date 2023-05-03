@@ -1,6 +1,7 @@
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import validates
 from config import db, bcrypt
 
 class Order(db.Model, SerializerMixin):
@@ -30,6 +31,12 @@ class User(db.Model, SerializerMixin):
 
     orders = db.relationship('Order', backref='user')
     clients = association_proxy('orders', 'client')
+
+    @validates('email')
+    def validate_email(self, key, email):
+        if '@' not in email:
+            raise ValueError('Please enter full email')
+        return email
 
     @hybrid_property
     def password_hash(self):

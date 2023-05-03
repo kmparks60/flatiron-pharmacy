@@ -18,6 +18,8 @@ function OrderTable({order}) {
 				<IconButton>
 					<EditIcon />
 				</IconButton>
+			</TableCell>
+			<TableCell>	
 				<IconButton>
 					<ClearIcon />
 				</IconButton>

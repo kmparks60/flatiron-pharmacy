@@ -6,19 +6,35 @@ import TableCell from '@mui/material/TableCell';
 import EditIcon from '@mui/icons-material/Edit';
 
 
-
-function ClientTable({client, removeClientFromState}) {
+function ClientTable({client, index, removeClientFromState, updateClient}) {
+	
+	// const commitNewCompany = e => {
+	// 	e.preventDefault()
+	// 	fetch(`http://localhost:5555/clients/${client.id}`, {
+	// 		method: 'PATCH',
+	// 		headers: {'Content-Type': 'application/json'},
+	// 		body: JSON.stringify( {
+	// 			company: newCompany
+	// 		})
+	// 	})
+	// 	.then(r => r.json())
+	// 	.then(updateClient)
+	// }
 
 	const handleDelete = () => {
 		fetch(`http://localhost:5555/clients/${client.id}`, {
 			method: 'DELETE'
 		})
 		.then(removeClientFromState(client.id))
+
 	}
+
+
+
 
   	return (
     	<>
-			<TableRow key={client.id}>
+			<TableRow key={client.name}>
 				<TableCell>{client.company}</TableCell>
 				<TableCell>{client.address}</TableCell>
 				<TableCell>{client.city}</TableCell>
@@ -30,6 +46,8 @@ function ClientTable({client, removeClientFromState}) {
 				<IconButton>
 					<EditIcon />
 				</IconButton>
+				</TableCell>
+				<TableCell>
 				<IconButton onClick={handleDelete}>
 					<ClearIcon />
 				</IconButton>

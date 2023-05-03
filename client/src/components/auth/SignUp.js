@@ -45,7 +45,7 @@ function SignUp() {
                 r.json().then((user) => console.log(user));
             }
         });
-        navigate('/login')
+        navigate('/')
     },
 });
 
@@ -141,7 +141,7 @@ function SignUp() {
             </Button>
             <Grid container justifyContent="flex-left" sx={{mb: 8}}>
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link href="/" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

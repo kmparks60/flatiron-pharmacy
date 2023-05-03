@@ -30,6 +30,16 @@ function Clients() {
         setClients(clientArr)
     }
 
+    const updateClient = newClientObj => {
+        setClients( clients.map(cObj => {
+            if(cObj.id !== newClientObj.id){
+                return cObj
+            }else {
+                return newClientObj
+            }
+        }))
+    }
+
     useEffect(() => {
         fetch('http://localhost:5555/clients')
         .then(r => r.json())
@@ -87,8 +97,8 @@ function Clients() {
                         <Grid container spacing={3}>
                             {/* Recent Orders */}
                             <Grid item xs={12}>
-                                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <ClientList clients={clients} removeClientFromState={removeClientFromState}/>
+                                <Paper sx={{ p: 0, display: 'flex', flexDirection: 'column' }}>
+                                    <ClientList clients={clients} removeClientFromState={removeClientFromState} updateClient={updateClient}/>
                                 </Paper>
                             </Grid>
                         </Grid>

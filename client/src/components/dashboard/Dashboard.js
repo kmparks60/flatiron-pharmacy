@@ -42,7 +42,7 @@ function Dashboard({user, setUser}) {
             method: "DELETE",
         }).then(
             setUser(null),
-        navigate('/login')
+        navigate('/')
     )};
 
     return (
