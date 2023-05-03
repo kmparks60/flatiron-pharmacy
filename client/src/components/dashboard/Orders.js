@@ -47,7 +47,10 @@ function Orders() {
                         </Typography>
                         <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
-                			<DashboardIcon />
+                            <Typography fontSize='6'>
+                                Dashboard
+                            </Typography >
+                            <DashboardIcon />
               			</Badge>
             		</IconButton>
                     </Toolbar>

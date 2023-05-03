@@ -27,7 +27,7 @@ function LeftList() {
             <ListItemIcon>
                 <MedicationIcon />
             </ListItemIcon>
-            <ListItemText primary="Chemicals" />
+            <ListItemText primary="APIs" />
             </ListItemButton>
             <ListItemButton onClick={clientRoute}>
             <ListItemIcon>

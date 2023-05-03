@@ -9,6 +9,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
+import HomeSharpIcon from '@mui/icons-material/HomeSharp';
 
 function Client() {
     const [orders, setOrders] = useState([])
@@ -18,6 +21,10 @@ function Client() {
         .then(r=>r.json())
         .then(setOrders)
     }, [])
+
+    function dashRoute() {
+        window.location.href='/'
+    }
 
     return (
       <>
@@ -31,6 +38,11 @@ function Client() {
                             color="white">
                             Welcome to Flatiron Pharmaceuticals
                         </Typography>
+                        <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
+              			<Badge color="secondary" align='right'>
+                			<HomeSharpIcon />
+              			</Badge>
+            		    </IconButton>
                     </Toolbar>
                 </AppBar>
                     <Toolbar

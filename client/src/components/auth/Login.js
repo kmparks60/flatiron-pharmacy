@@ -7,8 +7,7 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
+import LocalPharmacySharpIcon from '@mui/icons-material/LocalPharmacySharp';import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate} from 'react-router-dom'
 
@@ -48,11 +47,14 @@ function Login({handleLogin}) {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <LocalPharmacySharpIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          <Link href='/client' variant='body2'>
+            {'Clients Click Here to be Redirected'}
+          </Link>
           <Box component="form" onSubmit={onSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -85,11 +87,11 @@ function Login({handleLogin}) {
               Sign In
             </Button>
             <Grid container>
-              <Grid item>
+              <Box item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
+              </Box>
             </Grid>
           </Box>
         </Box>
