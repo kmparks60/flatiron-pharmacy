@@ -15,6 +15,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import ChemicalList from './ChemicalList';
+import { Link } from 'react-router-dom';
 
 function Chemicals() {
     const {apis, setApis} = useContext(ApiContext)
@@ -23,11 +24,7 @@ function Chemicals() {
         fetch('http://localhost:5555/apis')
         .then(r => r.json())
         .then(setApis)
-    }, [])
-    
-    function dashRoute() {
-        window.location.href='/dashboard'
-    }
+    }, [setApis])
 
     return (
         <>
@@ -41,7 +38,7 @@ function Chemicals() {
                             color="white">
                             APIs
                         </Typography>
-                        <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
+                        <IconButton color="inherit" component={Link} to='/dashboard' sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
                 			<Typography fontSize='6'>
                                 Dashboard

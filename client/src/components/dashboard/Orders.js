@@ -15,15 +15,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import OrderList from './OrderList'
+import { Link } from 'react-router-dom';
 
 
 
 
 function Orders() {
-    
-    function dashRoute() {
-        window.location.href='/dashboard'
-    }
 
     const [orders, setOrders] = useState([])
 
@@ -45,7 +42,7 @@ function Orders() {
                             color="white">
                             Orders
                         </Typography>
-                        <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
+                        <IconButton color="inherit" component={Link} to='/dashboard' sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
                             <Typography fontSize='6'>
                                 Dashboard

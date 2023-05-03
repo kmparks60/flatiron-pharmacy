@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import HomeSharpIcon from '@mui/icons-material/HomeSharp';
+import {Link} from 'react-router-dom'
 
 function Client() {
     const [orders, setOrders] = useState([])
@@ -21,10 +22,6 @@ function Client() {
         .then(r=>r.json())
         .then(setOrders)
     }, [])
-
-    function dashRoute() {
-        window.location.href='/'
-    }
 
     return (
       <>
@@ -38,7 +35,7 @@ function Client() {
                             color="white">
                             Welcome to Flatiron Pharmaceuticals
                         </Typography>
-                        <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
+                        <IconButton color="inherit" component={Link} to='/' sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
                 			<HomeSharpIcon />
               			</Badge>

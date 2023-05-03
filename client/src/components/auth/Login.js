@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LocalPharmacySharpIcon from '@mui/icons-material/LocalPharmacySharp';import Typography from '@mui/material/Typography';
@@ -52,8 +52,8 @@ function Login({handleLogin}) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Link href='/client' variant='body2'>
-            {'Clients Click Here to be Redirected'}
+          <Link to='/client' variant='body2'>
+            Clients Click Here to be Redirected
           </Link>
           <Box component="form" onSubmit={onSubmit} sx={{ mt: 1 }}>
             <TextField
@@ -88,8 +88,8 @@ function Login({handleLogin}) {
             </Button>
             <Grid container>
               <Box item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link to="/signup" variant="body2">
+                  Don't have an account? Sign Up
                 </Link>
               </Box>
             </Grid>

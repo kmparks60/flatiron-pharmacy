@@ -15,17 +15,16 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import ClientList from './ClientList';
+import { Link } from 'react-router-dom';
 
 
 function Clients() {
 
     const [clients, setClients] = useState([])
 
-    const removeClientFromState = (removeClientId) => {
+    const removeClientFromState = removeClientId => {
         const clientArr = clients.filter(clientObject => {
-            if(clientObject.id !== removeClientId) {
-                return true
-            }
+            return clientObject.id !== removeClientId
         })
         setClients(clientArr)
     }
@@ -46,10 +45,6 @@ function Clients() {
         .then(setClients)
     },[])
 
-	function dashRoute() {
-        window.location.href='/dashboard'
-    }
-
   	return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -62,7 +57,7 @@ function Clients() {
                             color="white">
                             Clients
                         </Typography>
-                        <IconButton color="inherit" onClick={dashRoute} sx={{ marginLeft: "auto" }}>
+                        <IconButton color="inherit" component={Link} to='/dashboard' sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
                           < Typography fontSize='6'>
                                 Dashboard

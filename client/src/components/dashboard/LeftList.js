@@ -6,36 +6,25 @@ import ListItemText from '@mui/material/ListItemText';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import MedicationIcon from '@mui/icons-material/Medication';
+import {Link} from 'react-router-dom'
 
 function LeftList() {
 
-    function chemicalRoute() {
-        window.location.href='/dashboard/chemicals'
-    }
-
-    function clientRoute() {
-        window.location.href='/dashboard/clients'
-    }
-
-    function orderRoute() {
-        window.location.href='/dashboard/orders'
-    }
-
     return (
         <Box pt={8} height={'100px'}>
-            <ListItemButton onClick={chemicalRoute}>
+            <ListItemButton component={Link} to='/dashboard/chemicals'>
             <ListItemIcon>
                 <MedicationIcon />
             </ListItemIcon>
             <ListItemText primary="APIs" />
             </ListItemButton>
-            <ListItemButton onClick={clientRoute}>
+            <ListItemButton component={Link} to='/dashboard/clients'>
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Clients" />
             </ListItemButton>
-            <ListItemButton onClick={orderRoute}>
+            <ListItemButton component={Link} to='/dashboard/orders'>
             <ListItemIcon>
                 <ShoppingCartIcon />
             </ListItemIcon>
