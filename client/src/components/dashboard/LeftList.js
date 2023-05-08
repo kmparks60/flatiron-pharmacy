@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import MedicationIcon from '@mui/icons-material/Medication';
+import Divider from '@mui/material/Divider';
 import {Link} from 'react-router-dom'
 
 function LeftList() {
@@ -30,6 +31,7 @@ function LeftList() {
             </ListItemIcon>
             <ListItemText primary="Orders" />
             </ListItemButton>
+            <Divider />
         </Box>
     )    
 };
