@@ -6,6 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import ClientTable from './ClientTable';
+// import ClientDataGrid from './ClientDataGrid';
 
 function ClientList({clients, removeClientFromState, updateClient}) {
 
@@ -28,7 +29,7 @@ function ClientList({clients, removeClientFromState, updateClient}) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-				{clients.map((clientObj, index) => {
+				{clients.map((clientObj) => {
 						return <ClientTable key={clientObj.id} client={clientObj} removeClientFromState={removeClientFromState} updateClient={updateClient} />
 					}) }
 				</TableBody>

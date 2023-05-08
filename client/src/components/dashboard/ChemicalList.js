@@ -1,5 +1,4 @@
-import React, {useContext} from 'react';
-import {ChemContext} from './Chemicals'
+import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,7 +9,6 @@ import ChemicalTable from './ChemicalTable';
 
 function ChemicalList({apis}) {
 
-	// const {apis} = useContext(ChemContext)
     
 	return (
         <>
@@ -27,11 +25,9 @@ function ChemicalList({apis}) {
           			</TableRow>
         		</TableHead>
         		<TableBody>
-				{/* <ChemContext.Consumer> */}
 				{apis.map((apiObj) => {
 						return <ChemicalTable key={apiObj.id} api={apiObj} />
 					}) }
-				{/* </ChemContext.Consumer> */}
         		</TableBody>
       		</Table>
         </>

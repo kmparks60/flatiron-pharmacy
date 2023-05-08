@@ -41,7 +41,7 @@ with app.app_context():
                city='Boston', state='Massachusetts',
                zipcode='02114', country='United States')
     
-    c9 = Client(company="Consult Rx Pharmacy", address='1119 e Sunrise Blvd',
+    c9 = Client(company="Consult Rx Pharmacy", address='1119 E Sunrise Blvd',
                city='Fort Lauderdale', state='Florida',
                zipcode='33304', country='United States')
     
