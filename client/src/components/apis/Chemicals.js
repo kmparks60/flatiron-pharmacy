@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {useState, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
+import { ApiContext } from '../context/Context';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -9,26 +9,29 @@ import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
-import LeftList from './LeftList';
+import LeftList from '../dashboard/LeftList';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import OrderList from './OrderList'
+import ChemicalList from './ChemicalList';
 import { Link } from 'react-router-dom';
 
+function Chemicals() {
+    const {apis, setApis} = useContext(ApiContext)
 
-
-
-function Orders() {
-
-    const [orders, setOrders] = useState([])
+    const removeApiFromState = removeApiId => {
+        const apiArr = apis.filter(apiObject => {
+            return apiObject.id !== removeApiId
+        })
+        setApis(apiArr)
+    }
 
     useEffect(() => {
-        fetch('/orders')
-        .then(r=>r.json())
-        .then(setOrders)
-    }, [])
+        fetch('http://localhost:5555/apis')
+        .then(r => r.json())
+        .then(setApis)
+    }, [setApis])
 
     return (
         <>
@@ -40,11 +43,11 @@ function Orders() {
                             component="h1"
                             variant="h6"
                             color="white">
-                            Orders
+                            APIs
                         </Typography>
                         <IconButton color="inherit" component={Link} to='/dashboard' sx={{ marginLeft: "auto" }}>
               			<Badge color="secondary" align='right'>
-                            <Typography fontSize='6'>
+                			<Typography fontSize='6'>
                                 Dashboard
                             </Typography >
                             <DashboardIcon />
@@ -71,17 +74,17 @@ function Orders() {
                         theme.palette.mode === 'light'
                             ? theme.palette.grey[100]
                             : theme.palette.grey[900],
-                        flexGrow: 1,
-                        height: '100vh',
-                        overflow: 'auto',
-                    }}>
+                            flexGrow: 1,
+                            height: '100vh',
+                            overflow: 'auto',
+                        }}>
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}>
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <OrderList orders={orders}/>
+                                        <ChemicalList apis={apis} removeApiFromState={removeApiFromState}/>
                                 </Paper>
                             </Grid>
                         </Grid>
@@ -92,4 +95,4 @@ function Orders() {
     )
 }
 
-export default Orders
+export default Chemicals

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {useState} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -11,29 +10,15 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import LeftList from './LeftList';
-import OrderChart from './OrderChart'
-import Projected from './Projected'
-import ClientForm from './ClientForm'
+// import OrderChart from './OrderChart'
+// import Projected from './Projected'
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
+import CalendarPage from './CalendarPage';
 import {useNavigate} from 'react-router-dom'
 
-
-function Dashboard({user, setUser}) {
-
-    const [clients, setClients] = useState([])
-
-    const addClient = (cO) => {
-        const clientArr = [...clients, cO]
-        fetch('http://localhost:5555/clients', {
-            method: 'POST', 
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(cO)
-        })
-        .then(r => r.json())
-        setClients(clientArr)
-    }
+function Dashboard({user, setUser}) {    
 
     const navigate=useNavigate()
     
@@ -94,7 +79,7 @@ function Dashboard({user, setUser}) {
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}>
                             {/* Chart */}
-                            <Grid item xs={12} md={8} lg={9}>
+                            {/* <Grid item xs={12} md={8} lg={9}>
                                 <Paper
                                     sx={{
                                         p: 2,
@@ -104,9 +89,9 @@ function Dashboard({user, setUser}) {
                                     }}>
                                     <OrderChart />
                                 </Paper>
-                            </Grid>
+                            </Grid> */}
                             {/* Recent Deposits */}
-                            <Grid item xs={12} md={4} lg={3}>
+                            {/* <Grid item xs={12} md={4} lg={3}>
                                 <Paper
                                     sx={{
                                         p: 2,
@@ -116,11 +101,11 @@ function Dashboard({user, setUser}) {
                                     }}>
                                     <Projected />
                                 </Paper>
-                            </Grid>
+                            </Grid> */}
                             {/* Recent Orders */}
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <ClientForm addClient={addClient}/>
+                                    <CalendarPage />
                                 </Paper>
                             </Grid>
                         </Grid>

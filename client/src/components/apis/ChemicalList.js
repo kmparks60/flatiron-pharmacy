@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import ChemicalTable from './ChemicalTable';
 
-function ChemicalList({apis}) {
+function ChemicalList({apis, removeApiFromState}) {
 
     
 	return (
@@ -26,7 +26,8 @@ function ChemicalList({apis}) {
         		</TableHead>
         		<TableBody>
 				{apis.map((apiObj) => {
-						return <ChemicalTable key={apiObj.id} api={apiObj} />
+						return <ChemicalTable key={apiObj.id} api={apiObj}
+											  removeApiFromState={removeApiFromState}/>
 					}) }
         		</TableBody>
       		</Table>

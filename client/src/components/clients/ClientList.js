@@ -25,12 +25,13 @@ function ClientList({clients, removeClientFromState, updateClient}) {
 						<TableCell>Zipcode</TableCell>
 						<TableCell>Country</TableCell>
 						<TableCell align='right'>Client Id</TableCell>
-						<TableCell align='right'></TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 				{clients.map((clientObj) => {
-						return <ClientTable key={clientObj.id} client={clientObj} removeClientFromState={removeClientFromState} updateClient={updateClient} />
+						return <ClientTable key={clientObj.id} client={clientObj}
+											removeClientFromState={removeClientFromState}
+											updateClient={updateClient}/>
 					}) }
 				</TableBody>
 			</Table>

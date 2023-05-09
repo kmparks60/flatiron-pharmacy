@@ -9,7 +9,7 @@ import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
-import LeftList from './LeftList';
+import LeftList from '../dashboard/LeftList';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -86,9 +86,9 @@ function Clients() {
                         theme.palette.mode === 'light'
                             ? theme.palette.grey[100]
                             : theme.palette.grey[900],
-                        flexGrow: 1,
-                        height: '100vh',
-                        overflow: 'auto',
+                            flexGrow: 1,
+                            height: '100vh',
+                            overflow: 'auto',
                     }}>
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>

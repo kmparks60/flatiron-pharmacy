@@ -1,35 +1,23 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import { DataGrid } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
-import ClientSideTable from './ClientSideTable';
-
 
 function ClientSideList({orders}) {
+
+	const column = [
+		{field:'id', headerName:'Order Number', width:200},
+		{field:'client_id', headerName:'Customer Id', width:200},
+		{field:'order_date', headerName:'Order Date', width:300},
+		{field:'pay_method', headerName: 'Payment Method', width:300},
+		{field:'price', headerName:'Total', width:300}
+	]
 
   	return (
     	<>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
       		Orders
     		</Typography>
-			<Table size="medium" >
-				<TableHead align='center'>
-					<TableRow>
-						<TableCell>Order Number</TableCell>
-						<TableCell>Customer Id</TableCell>
-						<TableCell>Order Date</TableCell>
-						<TableCell align='right'>Total</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody align='center'>
-					{orders.map(orderObj => {
-						return <ClientSideTable key={orderObj.id} order={orderObj} />
-					}) }
-				</TableBody>
-			</Table>
+			<DataGrid columns={column} rows={orders} />			
     	</>	
   	)
 }

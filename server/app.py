@@ -2,7 +2,7 @@ from flask import Flask, request, make_response, jsonify, session, flash
 from flask_restful import Resource 
 
 from config import app, db, api, bcrypt
-from models import Order, User, Client, API
+from models import Order, User, Client, API, CalendarEvent
 
 class Home(Resource):
     def get(self):
@@ -24,6 +24,17 @@ class Orders(Resource):
             }
             o_list.append(o_dict)
         return make_response(o_list, 200) 
+    
+    def post(self):
+        data = request.get_json()
+        order = Order(price = data['price'],
+                    pay_method = data['pay_method'],
+                    user_id = data['user_id'],
+                    client_id = data['client_id']
+                    )
+        db.session.add(order)
+        db.session.commit()
+        return make_response(order.to_dict(), 201)
 
 api.add_resource(Orders, '/orders')   
 
@@ -33,6 +44,14 @@ class GetOrdersById(Resource):
         if o_instace == None:
             return make_response({'Error': 'Order Not Found'}, 404)
         return make_response(o_instace.to_dict(), 200)
+    
+    def delete(self, id):
+        o_instance = Order.query.filter_by(id=id).first()
+        if o_instance == None:
+            return make_response({'Error': 'Order not found'}, 404)
+        db.session.delete(o_instance)
+        db.session.commit()
+        return make_response({}, 204)
 
 api.add_resource(GetOrdersById, '/orders/<int:id>')
 class Users(Resource):
@@ -204,7 +223,79 @@ class APIS(Resource):
             a_list.append(a_dict)
         return make_response(a_list, 200)
     
+    def post(self):
+        data = request.get_json()
+        api = API(chemical = data['chemical'],
+                quantity = data['quantity'],
+                price = data['price']
+                )
+        db.session.add(api)
+        db.session.commit()
+        return make_response(api.to_dict(), 201)
+    
 api.add_resource(APIS, '/apis')
+
+class GetApisById(Resource):
+    def get(self, id):
+        a_instace = API.query.filter_by(id=id).first()
+        if a_instace == None:
+            return make_response({'Error': 'API Not Found'}, 404)
+        return make_response(a_instace.to_dict(), 200)
+    
+    def delete(self, id):
+        a_instance = API.query.filter_by(id=id).first()
+        if a_instance == None:
+            return make_response({'Error': 'API not found'}, 404)
+        db.session.delete(a_instance)
+        db.session.commit()
+        return make_response({}, 204)
+    
+api.add_resource(GetApisById, '/apis/<int:id>')
+
+class CalendarEvents(Resource):
+    def get(self):
+        e_list = []
+        for e in CalendarEvent.query.all():
+            e_dict = {
+                'id': e.id,
+                'title': e.title,
+                'date': e.date,
+                'time': e.time,
+                'notes': e.notes                
+            }
+            e_list.append(e_dict)
+        return make_response(e_list, 200)
+    
+    def post(self):
+        data = request.get_json()
+        event = CalendarEvent(title = data['title'],
+                            date = data['date'],
+                            time = data['time'],
+                            notes = data['notes']
+                            )
+        db.session.add(event)
+        db.session.commit()
+        return make_response(event.to_dict(), 201)
+    
+api.add_resource(CalendarEvents, '/events')
+
+class GetCalenderEventsById(Resource):
+    def get(self, id):
+        e_instace = CalendarEvent.query.filter_by(id=id).first()
+        if e_instace == None:
+            return make_response({'Error': 'Event Not Found'}, 404)
+        return make_response(e_instace.to_dict(), 200)
+    
+    def delete(self, id):
+        e_instance = CalendarEvent.query.filter_by(id=id).first()
+        if e_instance == None:
+            return make_response({'Error': 'Event not found'}, 404)
+        db.session.delete(e_instance)
+        db.session.commit()
+        return make_response({}, 204)
+    
+api.add_resource(GetCalenderEventsById, '/events/<int:id>')
+
 
 
 if __name__ == '__main__':

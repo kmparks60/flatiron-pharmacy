@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box'
-
+import {useNavigate} from 'react-router-dom'
 
 function ClientForm({addClient}) {
 
@@ -15,6 +15,8 @@ function ClientForm({addClient}) {
     const [newState, setState] = useState()
     const [newZip, setZip] = useState()
     const [newCountry, setCountry] = useState()
+
+    const navigate = useNavigate()
 
     const companyChange = e => setCompany(e.target.value)
     const addressChange = e => setAddress(e.target.value)
@@ -34,15 +36,16 @@ function ClientForm({addClient}) {
             country: newCountry
         }
         addClient(newClient)
+        navigate('/dashboard')
     }
     
 
     return (
         <>
+            <Box component='form' onSubmit={handleSubmit} pl={4} pr={4} pb={4} pt={2} >
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
                 New Client Form
             </Typography>
-            <Box component='form' onSubmit={handleSubmit} >
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                 <TextField
