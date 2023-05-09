@@ -7,9 +7,11 @@ function ChemContext({children}) {
     const [apis, setApis] = useState([]) 
 
     return (
-        <ApiContext.Provider value={{apis, setApis}}>
-            {children}
-        </ApiContext.Provider>
+        <>
+            <ApiContext.Provider value={{apis, setApis}}>
+                {children}
+            </ApiContext.Provider>
+        </>
   )
 }
 

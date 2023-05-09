@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import OrderTable from './OrderTable';
 
 
-function OrderList({orders}) {
+function OrderList({orders, removeOrderFromState}) {
 	
 	
 	return (
@@ -28,7 +28,8 @@ function OrderList({orders}) {
         		</TableHead>
         		<TableBody align='center'>
 					{orders.map(orderObj => {
-							return <OrderTable key={orderObj.id} order={orderObj} />
+							return <OrderTable key={orderObj.id} order={orderObj} 
+												removeOrderFromState={removeOrderFromState}/>
 						}) }
         		</TableBody>
       		</Table>	

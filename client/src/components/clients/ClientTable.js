@@ -49,38 +49,37 @@ function ClientTable({client, removeClientFromState, updateClient}) {
 		}));
 	  };
 
-
   	return (
     	<>
 			<TableRow key={client.id}>
 			<TableCell>
 				{isEditing ? (
-				<input type="text" name="company" value={editedClient.company} onChange={handleInputChange} />
+				<input type="text" name="company" value={editedClient.company} onChange={handleInputChange} style={{ width: '125px' }} />
 				) : client.company}
 			</TableCell>
 			<TableCell>
 				{isEditing ? (
-				<input type="text" name="address" value={editedClient.address} onChange={handleInputChange} />
+				<input type="text" name="address" value={editedClient.address} onChange={handleInputChange} style={{ width: '110px' }} />
 				) : client.address}
 			</TableCell>
 			<TableCell>
 				{isEditing ? (
-				<input type="text" name="city" value={editedClient.city} onChange={handleInputChange} />
+				<input type="text" name="city" value={editedClient.city} onChange={handleInputChange} style={{ width: '90px' }} />
 				) : client.city}
 			</TableCell>
 			<TableCell>
 				{isEditing ? (
-				<input type="text" name="state" value={editedClient.state} onChange={handleInputChange} />
+				<input type="text" name="state" value={editedClient.state} onChange={handleInputChange} style={{ width: '85px' }} />
 				) : client.state}
 			</TableCell>
 			<TableCell>
 				{isEditing ? (
-				<input type="text" name="zipcode" value={editedClient.zipcode} onChange={handleInputChange} />
+				<input type="text" name="zipcode" value={editedClient.zipcode} onChange={handleInputChange} style={{ width: '50px' }} />
 				) : client.zipcode}
 			</TableCell>
 			<TableCell>
 				{isEditing ? (
-				<input type="text" name="country" value={editedClient.country} onChange={handleInputChange} />
+				<input type="text" name="country" value={editedClient.country} onChange={handleInputChange} style={{ width: '90px' }} />
 				) : client.country}
 			</TableCell>
 			<TableCell align='right'>{client.id}</TableCell>

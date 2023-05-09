@@ -73,10 +73,19 @@ class Client(db.Model, SerializerMixin):
     users = association_proxy('orders', 'user')
 
 class API(db.Model, SerializerMixin):
-    __tablename__ = 'apis00'
+    __tablename__ = 'apis'
 
     id = db.Column(db.Integer, primary_key=True)
     chemical = db.Column(db.String, nullable=False)
     quantity = db.Column(db.String)
     price = db.Column(db.Float)
+
+class CalendarEvent(db.Model, SerializerMixin):
+    __tablename__ = 'events'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50), nullable=False)
+    date = db.Column(db.DateTime, server_default = db.func.now())
+    time = db.Column(db.Time, nullable=False)
+    notes = db.Column(db.String(250))
     
